@@ -1,0 +1,7 @@
+{
+  "$schema": "../schema/relation_tuple.schema.json",
+  "namespace": "rc",
+  "object": "/asset/a_02",
+  "relation": "owner",
+  "subject_id": "/department/d_01"
+}
