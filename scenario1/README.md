@@ -1,18 +1,16 @@
-# 
-
-suppose the following scenarios:
-
-- user Alice is the org admin of organization org1
-- Alice subscribed `CMS`, `IDF`, `EAM` for org1
-
-
 # Scenario 1
 
-user Bob is the device manager in org1
+Background:
+
+- user Alice is the org admin of organization org1
+- Alice subscribed service `CMS`, `IDF`, `EAM` for org1
+
+user Bob is the device manager of org1
 
 Alice grant Bob permissions of `all devices` of org1.
 
 Alice created role `device-manager` and assign this role to Bob
+
 ```json
 {
   "actions": [
