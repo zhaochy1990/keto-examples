@@ -1,8 +1,8 @@
 {
   "$schema": "../../schema/relation_tuple.schema.json",
   "namespace": "rc",
-  "object": "b24b4f92",
-  "relation": "Update",
+  "object": "3d440bc5",
+  "relation": "Read",
   "subject_set": {
     "namespace": "rc",
     "object": "761d2f8f",

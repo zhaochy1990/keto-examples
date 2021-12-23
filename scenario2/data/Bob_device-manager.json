@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/relation_tuple.schema.json",
   "namespace": "rc",
-  "object": "/role/device-manager",
+  "object": "761d2f8f",
   "relation": "role-assignment",
-  "subject_id": "/user/Bob"
+  "subject_id": "5851dc72"
 }

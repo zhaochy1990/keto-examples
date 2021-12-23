@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/relation_tuple.schema.json",
   "namespace": "rc",
-  "object": "b24b4f92",
+  "object": "b233506e",
   "relation": "Update",
   "subject_set": {
     "namespace": "rc",
