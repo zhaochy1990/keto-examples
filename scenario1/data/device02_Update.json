@@ -1,0 +1,11 @@
+{
+  "$schema": "../../schema/relation_tuple.schema.json",
+  "namespace": "rc",
+  "object": "/device/002",
+  "relation": "Update",
+  "subject_set": {
+    "namespace": "rc",
+    "object": "/role/device-manager",
+    "relation": "role-assignment"
+  }
+}

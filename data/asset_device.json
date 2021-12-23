@@ -1,7 +1,0 @@
-{
-  "$schema": "../schema/relation_tuple.schema.json",
-  "namespace": "rc",
-  "object": "/asset/a_01",
-  "relation": "link",
-  "subject_id": "/device/dev_01"
-}
