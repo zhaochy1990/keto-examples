@@ -29,7 +29,7 @@ Alice created role `device-manager` and assign this role to Bob
 
 after the assignment, `iam-resource-watcher` will create the following relation tuples:
 
-```json
+```
 OBJECT                            RELATION               SUBJECT
 
 /role/device-manager              assignment             /user/Bob
@@ -76,7 +76,7 @@ keto expand Update rc /device/001
 
 later, Alice assigned role `device-manager` to user Tom, `iam-resource-wather` will be notified and create the new relation tuples:
 
-```json
+```
 OBJECT                            RELATION               SUBJECT
 
 /role/device-manager              assignment             /user/Tom
