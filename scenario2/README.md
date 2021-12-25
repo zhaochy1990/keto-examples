@@ -128,33 +128,47 @@ cc884448
 after calculation the users' permissions, we got the following relation-tuples:
 
 ```
-OBJECT                            RELATION               SUBJECT
+OBJECT         RESOURCE_NAME           RELATION               SUBJECT
 
-761d2f8f                          assignment             5851dc72
-761d2f8f                          assignment             6cfa21da
-d038f916                          Read                   761d2f8f#assignment
-d038f916                          Update                 761d2f8f#assignment
-b24b4f92                          Read                   761d2f8f#assignment
-b24b4f92                          Update                 761d2f8f#assignment
-3d440bc5                          Read                   761d2f8f#assignment
-3d440bc5                          Update                 761d2f8f#assignment
-b233506e                          Read                   761d2f8f#assignment
-b233506e                          Update                 761d2f8f#assignment
+761d2f8f       RoleDefinition          assignment             5851dc72
+761d2f8f       RoleDefinition          assignment             6cfa21da
+d038f916       Device                  Read                   761d2f8f#assignment
+d038f916       Device                  Update                 761d2f8f#assignment
+b24b4f92       Device                  Read                   761d2f8f#assignment
+b24b4f92       Device                  Update                 761d2f8f#assignment
+3d440bc5       Asset                   Read                   761d2f8f#assignment
+3d440bc5       Asset                   Update                 761d2f8f#assignment
+b233506e       Asset                   Read                   761d2f8f#assignment
+b233506e       Asset                   Update                 761d2f8f#assignment
 ```
 
-A human-readable version:
+we could use the following list function for PG to retrieve all resources that a user has direct/indirect relation to.
 
-```
-OBJECT                            RELATION               SUBJECT
+```sql
+CREATE OR REPLACE FUNCTION list(user_id text, relation text, type text) RETURNS SETOF relation_tuples AS $$
+DECLARE
+    r relations%ROWTYPE;
+BEGIN
+    FOR r IN SELECT * from relation_tuples AS rt
+    WHERE subject = user_id
+    LOOP
+        IF r.relation = 'assignment' THEN
+            return QUERY select * from list(r.object || '#' || r.relation, relation, type);
+        ELSIF r.relation = relation AND r.resource_name = type THEN
+            return NEXT r;
+        END IF;
+    END LOOP;
+    RETURN;
+END
+$$ LANGUAGE plpgsql;
 
-dep01-device-manager              assignment             Bob
-dep01-device-manager              assignment             Tom
-device01                          Read                   dep01-device-manager#assignment
-device01                          Update                 dep01-device-manager#assignment
-device02                          Read                   dep01-device-manager#assignment
-device02                          Update                 dep01-device-manager#assignment
-asset01                           Read                   dep01-device-manager#assignment
-asset01                           Update                 dep01-device-manager#assignment
-asset02                           Read                   dep01-device-manager#assignment
-asset02                           Update                 dep01-device-manager#assignment
+SELCECT * from list('6cfa21da', 'Read', 'Asset');
+
+-- which will get the following results
+
+OBJECT         RESOURCE_NAME           RELATION               SUBJECT
+
+b233506e       Asset                   Read                   761d2f8f#assignment
+3d440bc5       Asset                   Read                   761d2f8f#assignment
 ```
+
