@@ -20,4 +20,9 @@ add support for resource type
 
 ## Scenario 3
 
-add resource manager
+
+# Lessons Learned
+
+1. we need to add a new property `resource_name` for all relation-tuples
+2. reserved relations
+

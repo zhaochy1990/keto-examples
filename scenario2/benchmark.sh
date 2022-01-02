@@ -1,0 +1,1 @@
+ghz -c 100 -n 1000000 --insecure --proto /home/zhaochy/workspace/test-cases/scenario2/proto/ory/keto/acl/v1alpha1/check_service.proto --call ory.keto.acl.v1alpha1.CheckService.Check -d '{"namespace":"rc", "subject":{"id":"zhangsan"}, "relation":"Read", "object":"dev001"}' localhost:4466

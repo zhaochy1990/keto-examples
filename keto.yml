@@ -7,7 +7,9 @@ namespaces:
   - id: 0
     name: rc
 
-dsn: memory
+# Data Source Name
+# dsn: memory
+dsn: postgres://postgres:auth@127.0.0.1:5432/postgres
 
 serve:
   read:
